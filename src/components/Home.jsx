@@ -71,13 +71,21 @@ function Home() {
         }
     }
     const handelShow = () => {
-        setShowlist(true);
-        document.getElementById('list').style = 'background-size: 100% 100%;'
-
+        document.getElementById('list').style = 'animation: zoom-b 1.5s forwards ';
+        // document.getElementById('nd').style.cssText = `position: unset`;
+        
+        setTimeout(() => {
+            setShowlist(true);
+        },1500)
+        
     }
     const handelHide = () => {
-        setShowlist(false);
-        document.getElementById('list').style = 'background-size: 100% 50%;'
+        document.getElementById('list').style = 'animation: zoom-a 1.5s forwards '
+        // document.getElementById('nd').style = `position: absolute;left: 270px;top: 0px;transition: transform 2s`;
+                setTimeout(() => {
+            setShowlist(false);
+        },300)
+
     }
     const handelReset = () => {
         dispatch(ResetAllTask());
@@ -124,30 +132,34 @@ function Home() {
                 {/* <img src={image} height="100%" width="100%" alt="not-found"/> */}
             </div>
             <div className="heading" >
-                TO-DO Application
+                Task Application
             </div>
 
             <div className="todo-container mt-10 p-10">
                 <div className="input-container">
-                    <div className="input-label p-10 story f-30">
+                    <div className="input-label p-10 story f-30 harry">
                         Task:-
                     </div>
+                    <div  className="dfjc">
+
                     <input
-                        className="input"
+                            className="input"
+                            required
                         // value={value}
                         ref={inputRef}
                         onChange={(e) => {
                             handelChange(e);
-
+                            
                         }}
                         onKeyDown={(e) => {
                             if (e.key === 'Enter') {
                                 handelClick(e)
                             }
                         }}
-
-                    />
-                    <span className="btn ml-10" onClick={(e) => handelClick(e)} >  Add </span>
+                        
+                        />
+                    <div className="btn ml-10" onClick={(e) => handelClick(e)} >  Add </div>
+                        </div>
 
                     <div className="control-center dfjc mt-10 ">
                         <div className="btn" onClick={(e) => handelShow()}>Show</div>
@@ -234,7 +246,8 @@ function Home() {
 
                                     :
                                     <div
-                                        className="no-data story"
+                                        id="nd"
+                                        className="no-data harry"
                                     >
                                         NO TODO'S
                                     </div>

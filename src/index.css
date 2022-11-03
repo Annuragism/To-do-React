@@ -59,3 +59,10 @@ code {
   font-family: 'story';
   src: local('story'), url(./font/story-maker/StoryMakerGtDemo-qZmqV.ttf) format('truetype');
 }
+
+
+.brown{color:brown}
+.red{color:red}
+.green{color:green}
+.white{color:white}
+.black{color:black}
