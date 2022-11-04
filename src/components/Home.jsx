@@ -6,7 +6,8 @@ import wrong from '../assests/wrong.png'
 import undo from '../assests/undo.png'
 import pencil from '../assests/pencil.png'
 import favicon from '../assests/favicon.png'
-import dumb from '../assests/dumb.png'
+//eslint-disable-next-line
+import dumb from '../assests/dumb.jpeg'
 //Redux
 import { useSelector, useDispatch } from 'react-redux';
 import { addTask, deleteTask, EditTask, completeTask, ResetAllTask } from '../redux/action'
@@ -93,6 +94,11 @@ function Home() {
 
     }
     const handelCheck = (value, index) => {
+        // document.getElementById('dumb').style.cssText = 'left:160px';
+        // setTimeout(() => {
+        // document.getElementById('dumb').style.cssText = 'left:270px';
+            
+        // }, 1000);
         dispatch(completeTask({
             id: value?.id,
             isComplete: true
@@ -101,7 +107,9 @@ function Home() {
     const handelWrong = (value, index) => {
         dispatch(deleteTask({
             id: value?.id
-        }));
+        }));    
+
+        
     }
     const handelUndo = (value, index) => {
         dispatch(completeTask({
@@ -125,17 +133,22 @@ function Home() {
 
     return (
         <div className="Home pt-10">
-            <div className="dumb-img">
-                <img src={dumb} height="100%" width="100%" alt="not-found" />
+             <div className="harry-img"> </div>
+             <div className="school-img"> </div>
+            <div className="dumb-img" id="dumb">
+                {/* <img src={dumb} height="100%" width="100%" alt="not-found" /> */}
             </div>
             <div className="hogwarts-img">
                 {/* <img src={image} height="100%" width="100%" alt="not-found"/> */}
             </div>
-            <div className="heading" >
-                Task Application
-            </div>
+            
 
             <div className="todo-container mt-10 p-10">
+                <div style={{zIndex: 99}}>
+                    
+                <div className="heading" >
+                Task Application
+            </div>
                 <div className="input-container">
                     <div className="input-label p-10 story f-30 harry">
                         Task:-
@@ -166,14 +179,15 @@ function Home() {
                         <div className="btn" onClick={(e) => handelHide()}>Hide</div>
                         <div className="btn" onClick={(e) => handelReset()}>Reset</div>
                     </div>
+       </div>
 
                     <div className="list mt-10" id="list">
                         <ul className="list-ul">
                             {
                                 showlist && list.length > 0 ? list.map((item, index) => {
-                                    return <div className="li-div" key={index}>
+                                    return <div className="li-div" key={index} >
 
-                                        <li className={item?.isComplete ? 'line-through' : ''}>
+                                        <li  id={item?.title+index}>
                                             {
                                                 item?.isComplete ?
 
@@ -185,7 +199,7 @@ function Home() {
                                                     </StyleRoot>
                                                     : null
                                             }
-                                            <div style={{ width: '100%' }}>
+                                            <div style={{ width: '100%' }} className={item?.isComplete ? 'lt line-through' : 'lt'}>
                                                 {
 
                                                     editedId !== null && editedId === item.id ?
@@ -232,7 +246,7 @@ function Home() {
                                                                 : null}
 
                                                         <div className="control-img" title="Delete Task"
-                                                            onClick={() => handelWrong(item, index)}
+                                                            onClick={() => handelWrong(item, index,)}
                                                         ><img src={wrong} height="100%" width="100%" alt="not-found" />
                                                         </div>
                                                     </div> : null}
